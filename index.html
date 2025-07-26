@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nicknat Fits</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #3b7d5c;
+      --accent: #f9c846;
+      --bg: #faf9f6;
+      --header-bg: #ffffff;
+      --border: #e1e4e8;
+      --shadow: 0 4px 16px rgba(0,0,0,0.07);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--bg);
+      color: #222;
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+    /* Header */
+    header {
+      background: var(--header-bg);
+      box-shadow: var(--shadow);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+    nav a {
+      color: #222;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 1.05rem;
+      transition: color 0.2s;
+    }
+    nav a:hover,
+    nav a.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    /* Hero */
+    .hero {
+      background: linear-gradient(120deg, var(--primary) 70%, var(--accent) 100%);
+      color: #fff;
+      padding: 4rem 0 3rem 0;
+      text-align: center;
+    }
+    .hero h1 {
+      margin: 0 0 1.2rem 0;
+      font-size: 2.6rem;
+      font-weight: 700;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .btn {
+      background: var(--accent);
+      color: var(--primary);
+      border: none;
+      padding: 0.8rem 2rem;
+      font-weight: 600;
+      font-size: 1.05rem;
+      border-radius: 24px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover {
+      background: #ffd86b;
+    }
+    .section-title {
+      font-size: 1.7rem;
+      color: var(--primary);
+      margin-top: 2.5rem;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    /* Products */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .product-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .product-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 6px 18px rgba(59,125,92,0.08);
+    }
+    .product-card img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .product-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+    .product-price {
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.05rem;
+      margin-bottom: 0.7rem;
+    }
+    .product-card .btn {
+      background: var(--primary);
+      color: #fff;
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 20px;
+      margin-top: 0.5rem;
+    }
+    .product-card .btn:hover {
+      background: #25613e;
+    }
+    /* About */
+    .centered-text {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 2rem auto;
+    }
+    /* Contact */
+    .contact-form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin: 0.5rem 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .contact-form textarea {
+      min-height: 100px;
+    }
+    .form-message {
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--primary);
+    }
+    /* Footer */
+    footer {
+      background: var(--header-bg);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 1.2rem 0;
+      font-size: 1rem;
+      color: #777;
+      margin-top: 2rem;
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      nav a {
+        margin: 0.5rem 1rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .products {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <a href="#home" class="logo">Nicknat Fits</a>
+      <nav>
+        <a href="#home" class="active">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="container">
+      <h1>Find Unique Treasures at Niknat Fits</h1>
+      <p>Discover quality second-hand clothes, books, furniture and more. Sustainable shopping starts here!</p>
+      <a class="btn" href="#shop">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <main class="container">
+    <!-- SHOP -->
+    <section id="shop">
+      <h2 class="section-title">Featured Products</h2>
+      <div class="products" id="product-list"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2 class="section-title">About Us</h2>
+      <p class="centered-text">
+        Thriftify is your local online thrift store, dedicated to giving pre-loved items a second life.
+        We believe in affordable, eco-friendly shopping that benefits both the planet and our community.
+      </p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <form id="contact-form" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+      <div id="form-message" class="form-message"></div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 Thriftify. All rights reserved.
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    // Demo product data
+    const products = [
+      {
+        title: "Vintage Denim Jacket",
+        price: "$18",
+        image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        title: "Classic Wooden Chair",
+        price: "$25",
+        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        title: "Stack of Novels",
+        price: "$10",
+        image: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        title: "Retro Table Lamp",
+        price: "$12",
+        image: "https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        title: "Pre-loved Sneakers",
+        price: "$15",
+        image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        title: "Children’s Toy Set",
+        price: "$9",
+        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80"
+      }
+    ];
+
+    function renderProducts() {
+      const list = document.getElementById('product-list');
+      list.innerHTML = '';
+      products.forEach(prod => {
+        const div = document.createElement('div');
+        div.className = 'product-card';
+        div.innerHTML = `
+          <img src="${prod.image}" alt="${prod.title}">
+          <div class="product-title">${prod.title}</div>
+          <div class="product-price">${prod.price}</div>
+          <button class="btn" onclick="alert('This is a demo. In a real store, this would add to cart.')">Add to Cart</button>
+        `;
+        list.appendChild(div);
+      });
+    }
+    renderProducts();
+
+    // Contact form handling
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('form-message').textContent = "Thank you for contacting us! We'll respond soon.";
+      this.reset();
+    });
+
+    // Active navigation highlight
+    const navLinks = document.querySelectorAll('nav a');
+    window.addEventListener('scroll', () => {
+      let fromTop = window.scrollY + 70;
+      navLinks.forEach(link => {
+        const section = document.querySelector(link.getAttribute('href'));
+        if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
